@@ -49,7 +49,7 @@ For every operation, identify who is allowed and who is explicitly or implicitly
 
 Also generate tests for these boundary conditions on every mutating operation:
 - **Non-existent entity:** the target entity does not exist → verify the correct not-found result and no side effects.
-- **Entity in wrong scope:** the target entity exists but belongs to a different scope than the one in the call (e.g. document belongs to project A, call is against project B) → verify rejection and unchanged state.
+- **Entity in wrong scope:** the target entity exists but belongs to a different scope than the one in the call (e.g. order belongs to customer A, call is against customer B) → verify rejection and unchanged state.
 - **Caller not a member:** the caller is authenticated but has no membership or role in the target scope → verify rejection.
 
 ### 2c: State machine transitions
@@ -147,7 +147,7 @@ Write each case with this structure:
 Rules:
 - "Then" must be specific and independently verifiable. State exact fields, exact values, exact result codes, exact error identifiers. Never use vague assertions like "succeeds" or "returns the correct data."
 - "Post" captures a consequence that is distinct from the immediate return: a downstream state, a subsequent query result, a side effect. Omit it if it adds nothing.
-- Titles are concise and describe the scenario, not the implementation. Use the actor and the outcome: "ADMIN restores a soft-deleted document", not "test restore endpoint."
+- Titles are concise and describe the scenario, not the implementation. Use the actor and the outcome: "ADMIN refunds a cancelled order", not "test refund endpoint."
 - Each test is independent. It does not depend on the outcome of any other test case.
 - Add a blockquote note below a test case only when it requires a non-obvious setup step, tests an implicit invariant the plan doesn't state explicitly, or calls out a code-review-only check.
 
