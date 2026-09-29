@@ -38,7 +38,7 @@ Proceed directly to Phase 6 (draft the affected steps only) after completing any
 
 **Pipeline state:** Derive the feature name from the clarification doc filename. Read `plans/{feature-name}.pipeline.json`. If the file does not exist, or if `feat-plan.status` is not `completed`, stop. Tell the user to run `/feat-plan` first to initialize the pipeline.
 
-**Convention files:** Read the *nearest* `CLAUDE.md` and `CONVENTIONS.md` for every subsystem this plan touches, plus the project root's, and treat the most specific as authoritative (the file names are configurable, see the README). Extract the commit message format, implementation order, naming conventions, and any codebase-specific rules (e.g. required decorators, rate-limit or log-level tiers, bottom-up layer order). A root convention file that only delegates to subsystem files carries none of these. If you extracted nothing from it, say which subsystem files you read instead. These conventions must be followed in every drafted commit step, and they outrank this plan where they conflict.
+**Convention files:** Read the *nearest* `CLAUDE.md` and `CONVENTIONS.md` for every subsystem this plan touches, plus the project root's, and treat the most specific as authoritative (the file names are configurable, see the README). Extract the commit message format, implementation order, naming conventions, and any codebase-specific rules (e.g. required route decorators, bottom-up layer order). A root convention file that only delegates to subsystem files carries none of these. If you extracted nothing from it, say which subsystem files you read instead. These conventions must be followed in every drafted commit step, and they outrank this plan where they conflict.
 
 Read the clarification doc in full. Extract and record:
 
@@ -152,7 +152,7 @@ An explicit list of every file that changes in this commit. No file should appea
 ### 3. Pattern reference
 Before drafting the implementation detail, grep the codebase for the most analogous existing implementation in the same layer as the files in this step. Record the result as a per-file mapping:
 
-- **Analogous file found:** record as `path/to/file.py:L{start}-L{end}` with a one-line description of the pattern it demonstrates (e.g. `routers/orders.py:L42-L58, write-tier rate limit + request arg rename pattern`).
+- **Analogous file found:** record as `path/to/file.py:L{start}-L{end}` with a one-line description of the pattern it demonstrates (e.g. `routers/orders.py:L42-L58, auth dependency + response model pattern`).
 - **No analogous file:** record as `none, introducing new pattern`.
 
 This field is not optional. A step with no entry is incomplete. The execution skill reads this field before writing any code and will follow the named pattern structurally, or trigger the amendment protocol if it must diverge.
@@ -163,7 +163,7 @@ Full technical detail, not a high-level description but exact instructions:
 - Import statements for every symbol not already present in the file
 - Code snippets for all non-obvious logic: join paths, bulk update patterns, enum comparisons, async wrapping, nullable FK patterns
 - The verbatim confirmed values for every volatile constant this step uses (from Phase 3)
-- For route additions: the log-level and rate-limit tiers, as determined by the convention file's rules, justified by the worst-case outcome of the endpoint
+- For route additions: every per-route requirement the convention file sets (decorators, dependencies), citing the rule that requires it
 - Do not write "use the same pattern as X". Look up X in the codebase (grep + read the relevant function) and write the concrete detail into this section. The pattern reference field names the anchor; this section describes what to do with it.
 - Exception handlers must catch specific exception types, not broad `Exception` or bare `except`. Each clause must name the exception it catches.
 

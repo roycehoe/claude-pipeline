@@ -74,7 +74,7 @@ git status --short
 - If status is `failed`: "The audit found `{N}` blocker(s) in `plans/{feature-name}-audit.md`. Execution cannot proceed on an unverified plan. Resolve the blockers, re-run `/feat-execution`, then re-run `/feat-audit`."
 - If the entry is missing: "Run `/feat-audit` first. Executing without a passed audit risks implementing a plan with known gaps."
 
-**Convention files:** Read `CLAUDE.md` (and `CONVENTIONS.md` if present) from the project root. Note the commit message format, linting requirements, any required decorators or tiers for new routes, and any conventions for new code. These apply to every commit this skill makes.
+**Convention files:** Read `CLAUDE.md` (and `CONVENTIONS.md` if present) from the project root. Note the commit message format, linting requirements, any required decorators for new routes, and any conventions for new code. These apply to every commit this skill makes.
 
 Read the execution plan in full:
 - Note the `## Amendments` section (may be empty, which is normal)
@@ -152,7 +152,7 @@ If a symbol named in the step does not exist in the codebase and was not expecte
 
 Make all changes specified in the step, in file order as listed, with no partial implementations. Use the exact function signatures, parameter names, return types, import paths, and constant values written in the plan step. Use the confirmed volatile constants verbatim; do not substitute approximations.
 
-When adding a new route, verify any required decorators, log-level or rate-limit tier against the rules in the convention file before writing. If the plan step does not specify them, derive them from the convention file and note the derivation when presenting the summary.
+When adding a new route, verify any required decorators or dependencies against the rules in the convention file before writing. If the plan step does not specify them, derive them from the convention file and note the derivation when presenting the summary.
 
 When registering a route that could conflict with a parametric route, verify registration order. Literal-path routes must be registered before parametric routes.
 
@@ -315,7 +315,7 @@ Runs **after the last commit lands**, before Completion. One pass over the whole
 
 The reviewer must be an agent that did not write the code. The author reads its own choices as intentional, and removing that bias is the entire point. Spawn **one** subagent, `model: sonnet`, read-only agent type. Give it the brief below and nothing else: not the plan, not the execution plan, not the brief. A reviewer that can see the spec reviews against the spec, which is `/feat-audit`'s job.
 
-> Run `git diff {base}...HEAD` to see every change on this branch, where `{base}` is the commit the branch started from. For every file it touches, walk from that file's directory up to the project root, reading the nearest `CLAUDE.md` and `CONVENTIONS.md` you find on the way; treat the most specific as authoritative. A convention file that only delegates to subsystem files carries no rules of its own, so keep walking. If a rulings or decision-log file exists alongside them (e.g. `CONVENTIONS-RULINGS.md`), it outranks the others: read it first and let it govern on any conflict. Report every place the code breaches a documented convention: naming tables, module placement, layer responsibilities, return shapes, required decorators or tiers. For each finding give the offending `path:line`, the convention file and line it breaches, and the conforming form. Report nothing you cannot cite to a convention line. An opinion with no citation is not a finding. Before reporting, check whether the pattern you are flagging is the dominant shape in the surrounding code; if it is, the doc is likely stale and you should say so rather than file it as a breach. If you find no applicable rule anywhere on the chain, list the files you read and reply `no applicable conventions found`. If nothing breaches, reply `clean`.
+> Run `git diff {base}...HEAD` to see every change on this branch, where `{base}` is the commit the branch started from. For every file it touches, walk from that file's directory up to the project root, reading the nearest `CLAUDE.md` and `CONVENTIONS.md` you find on the way; treat the most specific as authoritative. A convention file that only delegates to subsystem files carries no rules of its own, so keep walking. If a rulings or decision-log file exists alongside them (e.g. `CONVENTIONS-RULINGS.md`), it outranks the others: read it first and let it govern on any conflict. Report every place the code breaches a documented convention: naming tables, module placement, layer responsibilities, return shapes, required decorators. For each finding give the offending `path:line`, the convention file and line it breaches, and the conforming form. Report nothing you cannot cite to a convention line. An opinion with no citation is not a finding. Before reporting, check whether the pattern you are flagging is the dominant shape in the surrounding code; if it is, the doc is likely stale and you should say so rather than file it as a breach. If you find no applicable rule anywhere on the chain, list the files you read and reply `no applicable conventions found`. If nothing breaches, reply `clean`.
 
 Then act on what comes back:
 
