@@ -1,0 +1,5 @@
+plans/*.pipeline.json
+plans/feat-execute-*.progress.json
+scratch/
+*.scratch
+.DS_Store
