@@ -88,7 +88,7 @@ Nothing needs configuring to start. These are the places the skills read from yo
 
 | What | Default | Notes |
 |---|---|---|
-| Convention files | `CLAUDE.md`, and `CONVENTIONS.md` beside it | The skills walk up from each touched file to the project root and treat the nearest file as authoritative. A file that only delegates upward carries no rules and the walk continues. Rename by editing the "Convention files" paragraphs in `feat-plan`, `feat-execution`, `feat-execute` and `feat-quick`. |
+| Convention files | `CLAUDE.md`, and `CONVENTIONS.md` beside it | The skills walk up from each touched file to the project root and treat the nearest file as authoritative. A file that only delegates upward carries no rules and the walk continues. Rename by editing the paragraphs that read `CLAUDE.md` in `feat-plan`, `feat-execution`, `feat-execute` and `feat-quick`. |
 | Rulings file | `CONVENTIONS-RULINGS.md`, optional | If present it outranks the other convention files in the branch-wide review in `feat-execute`. |
 | Layer order | Enums, models, migration, exceptions, gateway, utils, data access, schemas, validators, services, routers, entry point | Used by `feat-execution` to order commits. Define your own order in your convention file and it takes precedence. |
 | Lint command | `ruff check .` | Used by `feat-execute` after each commit. Change the command in `skills/feat-execute/SKILL.md` and its `allowed-tools` line for another linter. |

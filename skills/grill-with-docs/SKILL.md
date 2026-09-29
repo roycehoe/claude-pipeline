@@ -33,7 +33,7 @@ Use grep and file reads; take notes to challenge the user's assumptions during i
 
 ## Phase 3: Interrogation
 
-Interview the user relentlessly on every aspect until scope, terminology, and boundaries are unambiguous. Walk each branch of the design tree, resolving decision dependencies one by one.
+Question the user relentlessly on every aspect until scope, terminology, and boundaries are unambiguous. Walk each branch of the design tree, resolving decision dependencies one by one.
 
 Rules:
 - Ask one question at a time. Wait for the answer before continuing.
@@ -85,7 +85,7 @@ After the interrogation, apply this three-condition test to every significant de
 2. **Surprising without context**: a future reader would wonder "why did they do it this way?"
 3. **The result of a real trade-off**: genuine alternatives existed, and one was chosen for specific reasons
 
-If a decision passes all three, offer to write an ADR before finalising the brief. Keep ADRs to one paragraph: context, decision, why. Place them at `docs/adr/NNNN-slug.md`, incrementing from the highest existing number. If the user declines, skip it.
+If a decision passes all three, offer to write an ADR before finalising the brief. Keep ADRs to one paragraph: context, decision, why. Place them at `decisions/NNNN-slug.md` (or your repo's existing ADR directory), incrementing from the highest existing number. If the user declines, skip it.
 
 ---
 

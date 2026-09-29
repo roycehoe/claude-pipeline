@@ -109,7 +109,7 @@ Produce a numbered list of steps. Each step:
 
 ### Internal critique
 
-Critique the plan as a senior engineer would. Answer each question, then revise the steps in response:
+Critique the plan as an experienced reviewer would. Answer each question, then revise the steps in response:
 
 - What are the weakest assumptions?
 - What would a reviewer push back on?
@@ -143,7 +143,7 @@ After the stress-test, apply this three-condition test to every significant deci
 2. **Surprising without context**: a future reader will wonder "why did they do it this way?"
 3. **The result of a real trade-off**: there were genuine alternatives and a specific one was chosen for specific reasons
 
-If any decision passes all three, offer to write an ADR before finalising the plan. Keep ADRs to one paragraph: context, decision, and why. Place them at `docs/adr/NNNN-slug.md`, incrementing from the highest existing number. If the user declines, skip it.
+If any decision passes all three, offer to write an ADR before finalising the plan. Keep ADRs to one paragraph: context, decision, and why. Place them at `decisions/NNNN-slug.md` (or your repo's existing ADR directory), incrementing from the highest existing number. If the user declines, skip it.
 
 ## Phase 5: Gaps and breakage
 
