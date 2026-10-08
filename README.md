@@ -102,7 +102,7 @@ Requirements: Claude Code, `git`, and `gh` for auditing a GitHub PR by URL.
 
 ## Worked example
 
-[`examples/heartbeat-portfolio-polish/`](examples/heartbeat-portfolio-polish/) is a run of the audit path against a real branch of an open-source app: the cited PRD, the reviewer's gate notes, verdicted discrepancies, the tiered test plan and the validate report.
+[`examples/heartbeat-portfolio-polish/`](examples/heartbeat-portfolio-polish/) is a run of the audit path against a local, unpushed branch of an open-source app, so its citations point at a snapshot. It holds the cited PRD, the reviewer's gate notes, verdicted discrepancies, the tiered test plan and the validate report.
 
 ## Design notes
 

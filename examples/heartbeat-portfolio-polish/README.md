@@ -1,6 +1,6 @@
 # Worked example: auditing a branch with the audit pipeline
 
-This is a real run of the audit path (`audit-prd`, human gate, `audit-grill`, `audit-tests`, resolution gate, `audit-validate`) against a small branch of [Heartbeat](https://github.com/roycehoe/heartbeat), an open-source daily check-in app. The branch, `portfolio-polish`, adds tests, a CI workflow and a README to a FastAPI backend. It changes no application code.
+This is a run of the audit path (`audit-prd`, human gate, `audit-grill`, `audit-tests`, resolution gate, `audit-validate`) against `portfolio-polish`, a local branch of [Heartbeat](https://github.com/roycehoe/heartbeat), an open-source daily check-in app. The branch added tests, a CI workflow and a README to the FastAPI backend and changed no application code. It was never pushed and was later dropped, so the `file:line` citations below refer to that snapshot and cannot be checked against the public repo.
 
 The stages were run by hand, following each skill's instructions and output format, so each file below is what the skill writes to `plans/`. No personal data, credentials or environment values are quoted.
 
