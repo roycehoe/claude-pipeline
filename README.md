@@ -1,6 +1,6 @@
-# claude-pipeline
+# agent-pipeline
 
-Multi-agent plan, audit, execute and validate pipelines for [Claude Code](https://claude.com/claude-code), written as skills.
+Multi-agent plan, audit, execute and validate pipelines for coding agents. They run on [Claude Code](https://claude.com/claude-code), written as skills.
 
 Two pipelines share one idea: put human judgment where mistakes are cheap to fix, and let automation do the rest once intent is locked.
 
